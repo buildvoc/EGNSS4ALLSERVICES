@@ -316,12 +316,26 @@ function set_photos ($photos,$user_id,$task_id) {
       $efkTimeGalIf = "'".addslashes($efkTimeGalIf)."'";
       if ($efkTimeGalIf == "''") $efkTimeGalIf = 'NULL';
       // --- EKF END ---  
+
+      // --- OSNMA validation ---
+      $provider = "'".addslashes($photo['provider'])."'";
+      if ($provider == "''") $provider = 'NULL'; 
+
+      $osnma_enabled = "'".addslashes($photo['osnma_enabled'])."'";
+      if ($osnma_enabled == "''") $osnma_enabled = 'NULL'; 
+
+      $osnma_validated = "'".addslashes($photo['osnma_validated'])."'";
+      if ($osnma_validated == "''") $osnma_validated = 'NULL'; 
+
+      $validated_sats = "'".addslashes($photo['validated_sats'])."'";
+      if ($validated_sats == "''") $validated_sats = 'NULL'; 
+      // --- OSNMA END ---
       
       $sql_path = "SELECT id FROM photo WHERE digest = $digest";
       $res_path = mysqli_query($GLOBALS["mysqli_spoj"], $sql_path);
       if(!($rec_path = $res_path->fetch_assoc())) {               
-        $sql = "INSERT INTO photo (task_id, user_id, note, lat, lng, centroidLat, centroidLng, altitude, bearing, magnetic_azimuth, photo_heading, pitch, roll, photo_angle, orientation, horizontal_view_angle, vertical_view_angle, accuracy, created, device_manufacture, device_model, device_platform, device_version, sats_info, extra_sat_count, nmea_msg, network_info, timestamp, digest, nmea_location, nmea_distance, efkLatGpsL1, efkLngGpsL1, efkAltGpsL1, efkTimeGpsL1, efkLatGpsL5, efkLngGpsL5, efkAltGpsL5, efkTimeGpsL5, efkLatGpsIf, efkLngGpsIf, efkAltGpsIf, efkTimeGpsIf, efkLatGalE1, efkLngGalE1, efkAltGalE1, efkTimeGalE1, efkLatGalE5, efkLngGalE5, efkAltGalE5, efkTimeGalE5, efkLatGalIf, efkLngGalIf, efkAltGalIf, efkTimeGalIf) 
-                VALUES ($task_id,'".addslashes($user_id)."',$note,$lat,$lng,$centroidLat,$centroidLng,$altitude,$bearing,$magnetic_azimuth,$photo_heading,$pitch,$roll,$photo_angle,$orientation,$horizontal_view_angle,$vertical_view_angle,$accuracy,$created,$device_manufacture,$device_model,$device_platform,$device_version,$sats_info,$extra_sat_count,$nmea_msg,$network_info,utc_timestamp(),$digest,$nmea_location_json,$nmea_distance,$efkLatGpsL1,$efkLngGpsL1,$efkAltGpsL1,$efkTimeGpsL1,$efkLatGpsL5,$efkLngGpsL5,$efkAltGpsL5,$efkTimeGpsL5,$efkLatGpsIf,$efkLngGpsIf,$efkAltGpsIf,$efkTimeGpsIf,$efkLatGalE1,$efkLngGalE1,$efkAltGalE1,$efkTimeGalE1,$efkLatGalE5,$efkLngGalE5,$efkAltGalE5,$efkTimeGalE5,$efkLatGalIf,$efkLngGalIf,$efkAltGalIf,$efkTimeGalIf)";            
+        $sql = "INSERT INTO photo (task_id, user_id, note, lat, lng, centroidLat, centroidLng, altitude, bearing, magnetic_azimuth, photo_heading, pitch, roll, photo_angle, orientation, horizontal_view_angle, vertical_view_angle, accuracy, created, device_manufacture, device_model, device_platform, device_version, sats_info, extra_sat_count, nmea_msg, network_info, timestamp, digest, nmea_location, nmea_distance, efkLatGpsL1, efkLngGpsL1, efkAltGpsL1, efkTimeGpsL1, efkLatGpsL5, efkLngGpsL5, efkAltGpsL5, efkTimeGpsL5, efkLatGpsIf, efkLngGpsIf, efkAltGpsIf, efkTimeGpsIf, efkLatGalE1, efkLngGalE1, efkAltGalE1, efkTimeGalE1, efkLatGalE5, efkLngGalE5, efkAltGalE5, efkTimeGalE5, efkLatGalIf, efkLngGalIf, efkAltGalIf, efkTimeGalIf, provider, osnma_enabled, osnma_validated, validated_sats) 
+                VALUES ($task_id,'".addslashes($user_id)."',$note,$lat,$lng,$centroidLat,$centroidLng,$altitude,$bearing,$magnetic_azimuth,$photo_heading,$pitch,$roll,$photo_angle,$orientation,$horizontal_view_angle,$vertical_view_angle,$accuracy,$created,$device_manufacture,$device_model,$device_platform,$device_version,$sats_info,$extra_sat_count,$nmea_msg,$network_info,utc_timestamp(),$digest,$nmea_location_json,$nmea_distance,$efkLatGpsL1,$efkLngGpsL1,$efkAltGpsL1,$efkTimeGpsL1,$efkLatGpsL5,$efkLngGpsL5,$efkAltGpsL5,$efkTimeGpsL5,$efkLatGpsIf,$efkLngGpsIf,$efkAltGpsIf,$efkTimeGpsIf,$efkLatGalE1,$efkLngGalE1,$efkAltGalE1,$efkTimeGalE1,$efkLatGalE5,$efkLngGalE5,$efkAltGalE5,$efkTimeGalE5,$efkLatGalIf,$efkLngGalIf,$efkAltGalIf,$efkTimeGalIf,$provider,$osnma_enabled,$osnma_validated,$validated_sats)";            
         if (mysqli_query($GLOBALS["mysqli_spoj"], $sql)) {
           $id = mysqli_insert_id($GLOBALS["mysqli_spoj"]);
           
@@ -566,12 +580,26 @@ function set_photo ($photo,$user_id,$task_id) {
   $efkTimeGalIf = "'".addslashes($efkTimeGalIf)."'";
   if ($efkTimeGalIf == "''") $efkTimeGalIf = 'NULL';
   // --- EKF END ---  
+
+  // --- OSNMA validation ---
+  $provider = "'".addslashes($photo['provider'])."'";
+  if ($provider == "''") $provider = 'NULL'; 
+
+  $osnma_enabled = "'".addslashes($photo['osnma_enabled'])."'";
+  if ($osnma_enabled == "''") $osnma_enabled = 'NULL'; 
+
+  $osnma_validated = "'".addslashes($photo['osnma_validated'])."'";
+  if ($osnma_validated == "''") $osnma_validated = 'NULL'; 
+
+  $validated_sats = "'".addslashes($photo['validated_sats'])."'";
+  if ($validated_sats == "''") $validated_sats = 'NULL'; 
+  // --- OSNMA END ---
     
   $sql_path = "SELECT id FROM photo WHERE digest = $digest";
   $res_path = mysqli_query($GLOBALS["mysqli_spoj"], $sql_path);
   if(!($rec_path = $res_path->fetch_assoc())) {               
-    $sql = "INSERT INTO photo (task_id, user_id, note, lat, lng, centroidLat, centroidLng, altitude, bearing, magnetic_azimuth, photo_heading, pitch, roll, photo_angle, orientation, horizontal_view_angle, vertical_view_angle, accuracy, created, device_manufacture, device_model, device_platform, device_version, sats_info, extra_sat_count, nmea_msg, network_info, timestamp, digest, nmea_location, nmea_distance, efkLatGpsL1, efkLngGpsL1, efkAltGpsL1, efkTimeGpsL1, efkLatGpsL5, efkLngGpsL5, efkAltGpsL5, efkTimeGpsL5, efkLatGpsIf, efkLngGpsIf, efkAltGpsIf, efkTimeGpsIf, efkLatGalE1, efkLngGalE1, efkAltGalE1, efkTimeGalE1, efkLatGalE5, efkLngGalE5, efkAltGalE5, efkTimeGalE5, efkLatGalIf, efkLngGalIf, efkAltGalIf, efkTimeGalIf) 
-            VALUES ($task_id,'".addslashes($user_id)."',$note,$lat,$lng,$centroidLat,$centroidLng,$altitude,$bearing,$magnetic_azimuth,$photo_heading,$pitch,$roll,$photo_angle,$orientation,$horizontal_view_angle,$vertical_view_angle,$accuracy,$created,$device_manufacture,$device_model,$device_platform,$device_version,$sats_info,$extra_sat_count,$nmea_msg,$network_info,utc_timestamp(),$digest,$nmea_location_json,$nmea_distance,$efkLatGpsL1,$efkLngGpsL1,$efkAltGpsL1,$efkTimeGpsL1,$efkLatGpsL5,$efkLngGpsL5,$efkAltGpsL5,$efkTimeGpsL5,$efkLatGpsIf,$efkLngGpsIf,$efkAltGpsIf,$efkTimeGpsIf,$efkLatGalE1,$efkLngGalE1,$efkAltGalE1,$efkTimeGalE1,$efkLatGalE5,$efkLngGalE5,$efkAltGalE5,$efkTimeGalE5,$efkLatGalIf,$efkLngGalIf,$efkAltGalIf,$efkTimeGalIf)";            
+    $sql = "INSERT INTO photo (task_id, user_id, note, lat, lng, centroidLat, centroidLng, altitude, bearing, magnetic_azimuth, photo_heading, pitch, roll, photo_angle, orientation, horizontal_view_angle, vertical_view_angle, accuracy, created, device_manufacture, device_model, device_platform, device_version, sats_info, extra_sat_count, nmea_msg, network_info, timestamp, digest, nmea_location, nmea_distance, efkLatGpsL1, efkLngGpsL1, efkAltGpsL1, efkTimeGpsL1, efkLatGpsL5, efkLngGpsL5, efkAltGpsL5, efkTimeGpsL5, efkLatGpsIf, efkLngGpsIf, efkAltGpsIf, efkTimeGpsIf, efkLatGalE1, efkLngGalE1, efkAltGalE1, efkTimeGalE1, efkLatGalE5, efkLngGalE5, efkAltGalE5, efkTimeGalE5, efkLatGalIf, efkLngGalIf, efkAltGalIf, efkTimeGalIf, provider, osnma_enabled, osnma_validated, validated_sats) 
+            VALUES ($task_id,'".addslashes($user_id)."',$note,$lat,$lng,$centroidLat,$centroidLng,$altitude,$bearing,$magnetic_azimuth,$photo_heading,$pitch,$roll,$photo_angle,$orientation,$horizontal_view_angle,$vertical_view_angle,$accuracy,$created,$device_manufacture,$device_model,$device_platform,$device_version,$sats_info,$extra_sat_count,$nmea_msg,$network_info,utc_timestamp(),$digest,$nmea_location_json,$nmea_distance,$efkLatGpsL1,$efkLngGpsL1,$efkAltGpsL1,$efkTimeGpsL1,$efkLatGpsL5,$efkLngGpsL5,$efkAltGpsL5,$efkTimeGpsL5,$efkLatGpsIf,$efkLngGpsIf,$efkAltGpsIf,$efkTimeGpsIf,$efkLatGalE1,$efkLngGalE1,$efkAltGalE1,$efkTimeGalE1,$efkLatGalE5,$efkLngGalE5,$efkAltGalE5,$efkTimeGalE5,$efkLatGalIf,$efkLngGalIf,$efkAltGalIf,$efkTimeGalIf,$provider,$osnma_enabled,$osnma_validated,$validated_sats)";            
     if (mysqli_query($GLOBALS["mysqli_spoj"], $sql)) {
       $id = mysqli_insert_id($GLOBALS["mysqli_spoj"]);
       $status['photo_id'] = $id;
@@ -743,9 +771,9 @@ function get_task_photos ($task_id,$user_id) {
   $output = array();
   
   if ($task_id) {
-    $sql = "SELECT note,lat,lng,photo_heading,created,path,file_name,digest FROM photo WHERE flg_deleted = 0 AND task_id = '".addslashes($task_id)."'";
+    $sql = "SELECT note,lat,lng,photo_heading,created,path,file_name,digest,provider,osnma_enabled,osnma_validated,validated_sats FROM photo WHERE flg_deleted = 0 AND task_id = '".addslashes($task_id)."'";
   } elseif ($user_id) {
-    $sql = "SELECT note,lat,lng,photo_heading,created,path,file_name,digest FROM photo WHERE flg_deleted = 0 AND task_id IS NULL AND user_id = '".addslashes($user_id)."'";
+    $sql = "SELECT note,lat,lng,photo_heading,created,path,file_name,digest,provider,osnma_enabled,osnma_validated,validated_sats FROM photo WHERE flg_deleted = 0 AND task_id IS NULL AND user_id = '".addslashes($user_id)."'";
   } else {
     return $output;
   }
@@ -759,6 +787,11 @@ function get_task_photos ($task_id,$user_id) {
     $out['lng'] = $rec['lng'];
     $out['photo_heading'] = $rec['photo_heading'];
     $out['created'] = $rec['created'];
+
+    $output['provider'] = $rec['provider'];
+    $output['osnma_enabled'] = $rec['osnma_enabled'];
+    $output['osnma_validated'] = $rec['osnma_validated'];
+    $output['validated_sats'] = $rec['validated_sats'];
     
     $file = NULL;
     if (file_exists('../'.$rec['path'].$rec['file_name']) ) {
@@ -935,7 +968,7 @@ function get_unassigned_photos_ids ($uid) {
 function get_photo ($photo_id) {
   $output = array();
   
-  $sql = "SELECT note,lat,lng,photo_heading,created,path,file_name,digest FROM photo WHERE flg_deleted = 0 AND id = '".addslashes($photo_id)."'";
+  $sql = "SELECT note,lat,lng,photo_heading,created,path,file_name,digest,provider,osnma_enabled,osnma_validated,validated_sats FROM photo WHERE flg_deleted = 0 AND id = '".addslashes($photo_id)."'";
   $res = mysqli_query($GLOBALS["mysqli_spoj"], $sql);
   if($rec = $res->fetch_assoc()) { 
     $output['note'] = $rec['note'];
@@ -943,6 +976,11 @@ function get_photo ($photo_id) {
     $output['lng'] = $rec['lng'];
     $output['photo_heading'] = $rec['photo_heading'];
     $output['created'] = $rec['created'];
+
+    $output['provider'] = $rec['provider'];
+    $output['osnma_enabled'] = $rec['osnma_enabled'];
+    $output['osnma_validated'] = $rec['osnma_validated'];
+    $output['validated_sats'] = $rec['validated_sats'];
     
     $file = NULL;
     if (file_exists('../'.$rec['path'].$rec['file_name']) ) {
