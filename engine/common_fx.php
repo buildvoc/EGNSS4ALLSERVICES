@@ -321,13 +321,13 @@ function set_photos ($photos,$user_id,$task_id) {
       $provider = "'".addslashes($photo['provider'])."'";
       if ($provider == "''") $provider = 'NULL'; 
 
-      $osnma_enabled = "'".addslashes($photo['osnma_enabled'])."'";
+      $osnma_enabled = "'".addslashes($photo['osnmaEnabled'])."'";
       if ($osnma_enabled == "''") $osnma_enabled = 'NULL'; 
 
-      $osnma_validated = "'".addslashes($photo['osnma_validated'])."'";
+      $osnma_validated = "'".addslashes($photo['osnmaValidated'])."'";
       if ($osnma_validated == "''") $osnma_validated = 'NULL'; 
 
-      $validated_sats = "'".addslashes($photo['validated_sats'])."'";
+      $validated_sats = "'".addslashes($photo['validatedSats'])."'";
       if ($validated_sats == "''") $validated_sats = 'NULL'; 
       // --- OSNMA END ---
       
@@ -585,13 +585,13 @@ function set_photo ($photo,$user_id,$task_id) {
   $provider = "'".addslashes($photo['provider'])."'";
   if ($provider == "''") $provider = 'NULL'; 
 
-  $osnma_enabled = "'".addslashes($photo['osnma_enabled'])."'";
+  $osnma_enabled = "'".addslashes($photo['osnmaEnabled'])."'";
   if ($osnma_enabled == "''") $osnma_enabled = 'NULL'; 
 
-  $osnma_validated = "'".addslashes($photo['osnma_validated'])."'";
+  $osnma_validated = "'".addslashes($photo['osnmaValidated'])."'";
   if ($osnma_validated == "''") $osnma_validated = 'NULL'; 
 
-  $validated_sats = "'".addslashes($photo['validated_sats'])."'";
+  $validated_sats = "'".addslashes($photo['validatedSats'])."'";
   if ($validated_sats == "''") $validated_sats = 'NULL'; 
   // --- OSNMA END ---
     
